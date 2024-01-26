@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/signup', 'App\Http\Controllers\SignUpController@index')->name('signup');
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
@@ -27,6 +29,8 @@ Route::middleware('auth','verified')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::put('UpdateDevice', 'App\Http\Controllers\PutController@UpdateData')->middleware(['auth','admin']);//here it means the user must be an adminand authirzed to access this route
 Route::get('/redirect', 'App\Http\Controllers\HomeController@redirect')->middleware('auth')->name('redirect');
 
 require __DIR__.'/auth.php';
