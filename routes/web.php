@@ -20,9 +20,9 @@ Route::get('/', function () {
 
 Route::get('/signup', 'App\Http\Controllers\SignUpController@index')->name('signup');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+ Route::get('/dashboard', function () {
+    return view('pages.dashbord');
+ })->name('dashboard');
 
 Route::middleware('auth','verified')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
